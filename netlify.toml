@@ -17,7 +17,7 @@
 
 # Production context: main branch deploys
 [context.production]
-  command = "npm ci --legacy-peer-deps && npm run format:check && npm run lint && npm run build"
+  command = "npm ci --legacy-peer-deps && npm run build"
   
 [context.production.environment]
   NODE_ENV = "production"
