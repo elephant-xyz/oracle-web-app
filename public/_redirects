@@ -1,0 +1,8 @@
+# SPA fallback - redirect all routes to index.html
+/*    /index.html   200
+
+# API proxying (if needed in the future)
+# /api/*  https://api.elephant.xyz/:splat  200
+
+# External redirects (if needed)
+# /docs/*  https://docs.elephant.xyz/:splat  301

@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Brand Colors */
+  --color-brand-green-100: rgb(43 231 134);
+  --color-brand-green-80: rgb(43 231 134 / 0.8);
+  --color-brand-green-60: rgb(43 231 134 / 0.6);
+  --color-brand-green-40: rgb(43 231 134 / 0.4);
+  --color-brand-green-20: rgb(43 231 134 / 0.2);
+
+  --color-brand-charcoal-100: rgb(66 62 62);
+  --color-brand-charcoal-80: rgb(66 62 62 / 0.8);
+  --color-brand-charcoal-60: rgb(66 62 62 / 0.6);
+  --color-brand-charcoal-40: rgb(66 62 62 / 0.4);
+  --color-brand-charcoal-20: rgb(66 62 62 / 0.2);
+
+  --color-brand-storm-100: rgb(94 92 92);
+  --color-brand-storm-80: rgb(94 92 92 / 0.8);
+  --color-brand-storm-60: rgb(94 92 92 / 0.6);
+  --color-brand-storm-40: rgb(94 92 92 / 0.4);
+  --color-brand-storm-20: rgb(94 92 92 / 0.2);
+
+  --color-brand-white-100: rgb(255 255 255);
+  --color-brand-white-80: rgb(255 255 255 / 0.8);
+  --color-brand-white-60: rgb(255 255 255 / 0.6);
+  --color-brand-white-40: rgb(255 255 255 / 0.4);
+  --color-brand-white-20: rgb(255 255 255 / 0.2);
+
+  --color-brand-offwhite-100: rgb(240 240 240);
+  --color-brand-offwhite-80: rgb(240 240 240 / 0.8);
+  --color-brand-offwhite-60: rgb(240 240 240 / 0.6);
+  --color-brand-offwhite-40: rgb(240 240 240 / 0.4);
+  --color-brand-offwhite-20: rgb(240 240 240 / 0.2);
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
