@@ -10,7 +10,7 @@
 
 [build.environment]
   # Node.js version for the build
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
   
   # Enable npm ci for faster, reliable builds
   NPM_FLAGS = "--legacy-peer-deps"
@@ -21,14 +21,21 @@
   
 [context.production.environment]
   NODE_ENV = "production"
+  NODE_VERSION = "20"
 
 # Deploy preview context: for PRs and branch deploys
 [context.deploy-preview]
   command = "npm ci --legacy-peer-deps && npm run build"
 
+[context.deploy-preview.environment]
+  NODE_VERSION = "20"
+
 # Branch deploy context: for non-production branch deploys
 [context.branch-deploy]
   command = "npm ci --legacy-peer-deps && npm run build"
+
+[context.branch-deploy.environment]
+  NODE_VERSION = "20"
 
 # Redirect rules for SPA (Single Page Application)
 [[redirects]]
