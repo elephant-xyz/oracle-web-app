@@ -2,6 +2,8 @@ import { ethers, Contract } from 'ethers';
 import type { Signer } from 'ethers';
 import type { DataItem, BatchSubmissionResult } from '../types/contract.types';
 import { SUBMIT_CONTRACT_ABI_FRAGMENTS } from '../config/constants';
+import { CID } from 'multiformats';
+import { sha256 } from 'multiformats/hashes/sha2';
 
 export class TransactionBatcherService {
   private contract: Contract;
@@ -23,16 +25,28 @@ export class TransactionBatcherService {
   /**
    * Converts CID to hash by extracting the hash portion
    */
-  private extractHashFromCID(cid: string): string {
-    // For base32 CIDs (v1), we need to decode and extract the hash
-    // For now, we'll use a simple approach and convert to bytes32
-    const cleanCid = cid.startsWith('.') ? cid.substring(1) : cid;
+  private extractHashFromCID = (cid: string): string => {
+    try {
+      const parsedCid = CID.parse(cid);
 
-    // Convert CID to bytes32 by hashing it
-    // In production, you'd want to properly decode the CID
-    return ethers.keccak256(ethers.toUtf8Bytes(cleanCid));
-  }
+      // Check if the multihash is SHA-256 (code 0x12)
+      if (parsedCid.multihash.code !== sha256.code) {
+        throw new Error(
+          `Only SHA-256 hash is supported, got hash function code ${parsedCid.multihash.code}`
+        );
+      }
 
+      // Extract the hash bytes from the multihash
+      // This works for both CID v0 and v1 as long as they use SHA-256
+      const hashBytes = parsedCid.multihash.digest;
+
+      // Convert to hex string with 0x prefix using ethers.hexlify
+      return ethers.hexlify(hashBytes);
+    } catch (e: unknown) {
+      console.error(`Failed to extract hash from CID: ${String(e)}`);
+      throw new Error(`Invalid CID format: ${cid}`);
+    }
+  };
   /**
    * Prepares DataItem for contract call by converting CIDs to hashes
    */
